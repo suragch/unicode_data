@@ -1,6 +1,6 @@
 name: unicode_data
-description: A starting point for Dart libraries or applications.
-version: 0.1.0
+description: This library puts Unicode data in a format that can be programmatically manipulated.
+version: 0.1.1
 homepage: https://github.com/suragch/unicode_data
 author: Suragch <studymongolian@gmail.com>
 
