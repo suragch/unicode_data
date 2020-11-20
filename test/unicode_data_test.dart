@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('Scripts:', () {
-    List<Script> scripts;
+    late List<Script> scripts;
 
     setUp(() {
       scripts = UnicodeScript.scripts;
@@ -43,7 +43,7 @@ void main() {
   });
 
   group('Blocks:', () {
-    List<Block> blocks;
+    late List<Block> blocks;
 
     setUp(() {
       blocks = UnicodeBlock.blocks;

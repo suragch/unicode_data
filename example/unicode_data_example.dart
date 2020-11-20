@@ -1,6 +1,6 @@
 import 'package:unicode_data/unicode_data.dart';
 
-main() {
+void main() {
   unicodeBlockExamples();
   unicodeScriptExamples();
 }

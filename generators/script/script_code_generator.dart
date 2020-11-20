@@ -5,22 +5,22 @@ import 'dart:io';
 
 // create lines of text in the following format:
 // Script(0xD7CB, 0xD7FB, 'Hangul', 'Lo'),
-main() async {
+void main() async {
 
   // input
-  File inputFile = File("generators/script/Scripts.txt");
-  String fileText = await inputFile.readAsString();
+  final inputFile = File('generators/script/Scripts.txt');
+  final fileText = await inputFile.readAsString();
 
   // output
-  File outputFile = File("generators/script/output.txt");
+  final outputFile = File('generators/script/output.txt');
   if (await outputFile.exists()) {
     await outputFile.delete();
   }
 
   // loop through each line in the string
   // ignore comments or empty lines
-  LineSplitter ls = LineSplitter();
-  List<String> lines = ls.convert(fileText);
+  final ls = LineSplitter();
+  final lines = ls.convert(fileText);
   for (var line in lines) {
     if (line.trim() == '' || line.startsWith('#')) {
       continue;
@@ -28,7 +28,7 @@ main() async {
 
     // start
     final startRegex = RegExp(r'^[0-9a-fA-F]+');
-    final startMatch = startRegex.firstMatch(line);
+    final startMatch = startRegex.firstMatch(line)!;
     final start = startMatch.group(0);
 
     // end
@@ -38,16 +38,16 @@ main() async {
 
     // script property value (ie, name)
     final nameRegex = RegExp(r'; (\w+) #');
-    final nameMatch = nameRegex.firstMatch(line);
+    final nameMatch = nameRegex.firstMatch(line)!;
     final name = nameMatch.group(1);
 
     // category
     final categoryRegex = RegExp(r'; .+ # (.{2})');
-    final categoryMatch = categoryRegex.firstMatch(line);
+    final categoryMatch = categoryRegex.firstMatch(line)!;
     final category = categoryMatch.group(1);
 
     final outputLine = "Script(0x$start, 0x$end, '$name', '$category'),";
-    await outputFile.writeAsString("$outputLine\n", mode: FileMode.append);
+    await outputFile.writeAsString('$outputLine\n', mode: FileMode.append);
 
     print(outputLine);
   }
